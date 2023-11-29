@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"./models"
+	"github.com/Steelyphil1/Personal_Website_API/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -27,7 +27,7 @@ func ConnectDb() {
 	)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Info)
+		Logger: logger.Default.LogMode(logger.Info),
 	})
 
 	if err != nil {
@@ -36,7 +36,7 @@ func ConnectDb() {
 	}
 
 	log.Println("Connected to DB")
-	db.Logger = logger.Default.LogMode(logger.info)
+	db.Logger = logger.Default.LogMode(logger.Info)
 
 	log.Println("Running Migrations")
 	db.AutoMigrate(&models.Fact{})
